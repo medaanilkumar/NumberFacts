@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Facts</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            width: 500px;
+            height: 300px;
+            background-color: blueviolet;
+            color: white;
+            text-align: center;
+            margin: 0 auto;
+            padding: 1rem;
+            position: relative;
+            top: 5rem;
+            line-height: 3rem;
+            font-size: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+        }
+        input{
+            width: 300px;
+            height: 50px;
+            padding: 0.3rem;
+            
+        }h3{
+            display: none;
+        }
+        input:focus{
+            border: 3px solid red;
+            border-radius:5rem
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>Number Fact</header>
+        <input type="number" placeholder="Pls enter a number...." required class="input1">
+        <h3>Number fact for particular Number</h3>
+        <p id="output"></p>
+    </div>
+    <script>
+        input1=document.querySelector('.input1')
+        p=document.querySelector('p')
+        h3=document.querySelector('h3')
+        console.log(p)
+        input1.addEventListener('input',NumberFact)
+        function NumberFact(){
+            fetch('http://numbersapi.com/'+input1.value)
+            .then(res=>res.text())
+            .then(data=>{
+            if(input1.value!=''){
+                h3.style.display='block'
+                p.innerText=data
+                console.log(p)
+            }
+            else{
+                h3.style.display='none'
+                p.style.display='none'
+            }
+            }
+            )
+        }
+    </script>
+</body>
+</html>
